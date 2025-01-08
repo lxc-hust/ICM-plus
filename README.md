@@ -1,8 +1,6 @@
 # ICM-plus
 An evaluation of In-Context Matting by HUST-TinySmart and an expansion of ICM-57 dataset
 
-# IndexNet Matting
-
 <p align="center">
   <img src="kid.png" width="350" title="Original Image"/>
   <img src="matte.png" width="350" title="IndexNet Matting"/>
