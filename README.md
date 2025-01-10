@@ -9,7 +9,7 @@ An evaluation of In-Context Matting by HUST-TinySmart and an expansion of ICM-57
 </p>
 
 
-<h4 align="center">This is an implementation of the IconMatting Model from the paper <a href="https://arxiv.org/abs/2403.15789">In-Context Matting</a>.</h4>
+<h4 align="center">This is an implementation of the IconMatting Model from the CVPR-2024 paper <a href="https://arxiv.org/abs/2403.15789">In-Context Matting</a>.</h4>
 
 <h4 align="center">Details of the model architecture can be found in <a href="https://tiny-smart.github.io/icm.github.io/">TinySmart homepage</a>.</h4>
 
