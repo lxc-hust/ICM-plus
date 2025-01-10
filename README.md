@@ -38,9 +38,6 @@ conda env create -f env.yml
 
 ## Prepare model checkpoints
 1. The IconMatting model checkpoints are open-source by <a href="https://pan.baidu.com/share/init?surl=HPbRRE5ZtPRpOSocm9qOmA&pwd=BA1c">HUST TinySmart</a>.
-````bash
-conda env create -f env.yml
-````
 2. <a href="https://huggingface.co/stabilityai/stable-diffusion-2-1">Stable Diffusion v2-1</a> is also required. To download it, run the following commands:
 ````
 huggingface-cli download --resume-download stabilityai/stable-diffusion-2-1 --local-dir your/local/dir
