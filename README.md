@@ -1,5 +1,5 @@
 # ICM-plus
-An evaluation of In-Context Matting by HUST-TinySmart and an expansion of ICM-57 dataset
+An evaluation of In-Context Matting by HUST-TinySmart and an expansion of ICM-57 dataset. Official original paper is shown below.
 
 <p align="center">
 <a href="https://arxiv.org/pdf/2403.15789.pdf"><img  src="demo/src/icon/arXiv-Paper.svg" ></a>
@@ -16,24 +16,24 @@ An evaluation of In-Context Matting by HUST-TinySmart and an expansion of ICM-57
 
 
 ## Updates
-- 8 June 2020: The [journal version](https://arxiv.org/abs/1908.09895v2) of this work has been accepted to TPAMI! We further report many interesting results on other dense prediction tasks and extend our insights on generic upsampling operators.
-- 4 April 2020: Training code is released!
-- 16 Aug 2019: The supplementary material is finalized and released!
-- 5 Aug 2019: Inference code of IndexNet Matting is released!
+- 10 January 2025: Experiment instructions have been released!
+- 9 January 2025: The project description is now available. The code and experiment instructions will follow soon (slightly later than 10 January 2025).
+
 
 
 ## Highlights
-- **Simple and effective:** IndexNet Matting only deals with the upsampling stage but exhibits at least 16.1% relative improvements, compared to the Deep Matting baseline;
-- **Memory-efficient:** IndexNet Matting builds upon MobileNetV2. It can process an image with a resolution up to 1980x1080 on a single GTX 1070;
-- **Easy to use:** This framework also includes our re-implementation of Deep Matting and the pretrained model presented in the Adobe's CVPR17 paper.
+- **User-Friendly:** Simple implementation with comprehensive experiment instructions.
+- **Superior performance:** This implementation of the IconMatting model shows only a slight discrepancy compared to the results in the paper.
+- **Expanded Test Set:** A newly released, manually created Image Matting test set.
 
-## Installation
-Our code has been tested on Python 3.6.8/3.7.2 and PyTorch 0.4.1/1.1.0. Please follow the official instructions to configure your environment. See other required packages in `requirements.txt`.
+## Requirements
+Our experiments were conducted on an RTX 3090. The minimum required configuration is 16GB of VRAM. For optimal performance, a configuration with 24GB of VRAM or more is recommended.
 
-## A Quick Demo
-We have included our pretrained model in `./pretrained` and several images and trimaps from the Adobe Image Dataset in `./examples`. Run the following command for a quick demonstration of IndexNet Matting. The inferred alpha mattes are in the folder `./examples/mattes`.
+## Environment
+We have included our environment configuration and third-party library dependencies in the `env.yml` file. To ensure the project runs smoothly, please follow the steps below to set up the environment:
 
-    python scripts/demo.py
+```bash
+conda env create -f env.yml
     
 ## Prepare Your Data
 1. Please contact Brian Price (bprice@adobe.com) requesting for the Adobe Image Matting dataset;
