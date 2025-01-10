@@ -38,31 +38,35 @@ conda env create -f env.yml
 
 ## Prepare model checkpoints
 1. The IconMatting model checkpoints are open-source by <a href="https://pan.baidu.com/share/init?surl=HPbRRE5ZtPRpOSocm9qOmA&pwd=BA1c">HUST TinySmart.</a>.
-2. <a href="https://huggingface.co/stabilityai/stable-diffusion-2-1">Stable Diffusion v2-1.</a> is also required. To download it, run the following commands:
-```bash
+````bash
 conda env create -f env.yml
-```
-huggingface-cli download --resume-download stabilityai/stable-diffusion-2-1 --local-dir your/local/dir
 ````
+2. <a href="https://huggingface.co/stabilityai/stable-diffusion-2-1">Stable Diffusion v2-1.</a> is also required. To download it, run the following commands:
+````
+huggingface-cli download --resume-download stabilityai/stable-diffusion-2-1 --local-dir your/local/dir
 ````
 Make sure that the `your/local/dir` directory matches the path set in `config/eval.yaml`.
 
 
-
-## Prepare model checkpoints
-$PATH_TO_DATASET/Combined_Dataset
-├──── Training_set
-│    ├──── alpha (431 images)
-│    ├──── fg (431 images)
-│    └──── merged (43100 images)
-├──── Test_set
-│    ├──── alpha (50 images)
-│    ├──── fg (50 images)
-│    ├──── merged (1000 images)
-│    └──── trimaps (1000 images)
+## Prepare test dataset
+It is recommended that your dataset be organized with the following structure:
+````
+$./datasets
+├──── ICM57
+│    ├──── image
+│    ├──── alpha
+│    └──── trimap
+├──── your_test_set
+│    ├──── image
+│    ├──── alpha
+│    └──── trimap
+````
+If the dataset is missing trimap information, you can generate it by running:
+````
+python trimap_gen.py
 ````
 
-## Inference
+
 Run the following command to do inference of IndexNet Matting/Deep Matting on the Adobe Image Matting dataset:
 
     python scripts/demo_indexnet_matting.py
@@ -84,31 +88,3 @@ Here is the results of IndexNet Matting and our reproduced results of Deep Matti
 * The original paper reported that there were 491 images, but the released dataset only includes 431 images. Among missing images, 38 of them were said double counted, and the other 24 of them were not released. As a result, we at least use 4.87% fewer training data than the original paper. Thus, the small differerce in performance should be normal.
 * The evaluation code (Matlab code implemented by the Deep Image Matting's author) placed in the ``./evaluation_code`` folder is used to report the final performance for a fair comparion. We have also implemented a python version. The numerial difference is subtle.
 
-## Training
-Run the following command to train IndexNet Matting:
-
-    sh train.sh
-    
-- `--data-dir` should be modified to your dataset directory.
-- I was able to train the model on a single GTX 1080ti (12 GB). The training takes about 5 days. The current bottleneck appears to be the dataloader.
-
-## Citation
-If you find this work or code useful for your research, please cite:
-```
-@inproceedings{hao2019indexnet,
-  title={Indices Matter: Learning to Index for Deep Image Matting},
-  author={Lu, Hao and Dai, Yutong and Shen, Chunhua and Xu, Songcen},
-  booktitle={Proc. IEEE/CVF International Conference on Computer Vision (ICCV)},
-  year={2019}
-}
-
-@article{hao2020indexnet,
-  title={Index Networks},
-  author={Lu, Hao and Dai, Yutong and Shen, Chunhua and Xu, Songcen},
-  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
-  year={2020}
-}
-```
-
-## Permission and Disclaimer
-This code is only for non-commercial purposes. As covered by the ADOBE IMAGE DATASET LICENSE AGREEMENT, the trained models included in this repository can only be used/distributed for non-commercial purposes. Anyone who violates this rule will be at his/her own risk.
