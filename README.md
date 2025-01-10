@@ -37,18 +37,20 @@ conda env create -f env.yml
 ```
 
 ## Prepare model checkpoints
-1. The IconMatting model checkpoints are open-source by <a href="https://pan.baidu.com/share/init?surl=HPbRRE5ZtPRpOSocm9qOmA&pwd=BA1c">HUST TinySmart.</a>.
+1. The IconMatting model checkpoints are open-source by <a href="https://pan.baidu.com/share/init?surl=HPbRRE5ZtPRpOSocm9qOmA&pwd=BA1c">HUST TinySmart</a>.
 ````bash
 conda env create -f env.yml
 ````
-2. <a href="https://huggingface.co/stabilityai/stable-diffusion-2-1">Stable Diffusion v2-1.</a> is also required. To download it, run the following commands:
+2. <a href="https://huggingface.co/stabilityai/stable-diffusion-2-1">Stable Diffusion v2-1</a> is also required. To download it, run the following commands:
 ````
 huggingface-cli download --resume-download stabilityai/stable-diffusion-2-1 --local-dir your/local/dir
 ````
 Make sure that the `your/local/dir` directory matches the path set in `config/eval.yaml`.
 
 
-## Prepare test dataset
+## Prepare test datasets
+1.<a href="https://pan.baidu.com/share/init?surl=ZJU_XHEVhIaVzGFPK_XCRg&pwd=BA1c">ICM-57</a> dataset is open-source by HUST-TinySmart.
+2.ICM-plus dataset has been submitted.
 It is recommended that your dataset be organized with the following structure:
 ````
 $./datasets
@@ -66,25 +68,17 @@ If the dataset is missing trimap information, you can generate it by running:
 python trimap_gen.py
 ````
 
+## Evaluation
+1.Make sure to update the file reading path in `./icm/data/image_file.py` to point to your dataset directory. Additionally, ensure that the `dataset_name` field in `./config/eval.yaml` matches the name of your dataset.
+2.Run the following command to generate the predicted alpha matte:
 
-Run the following command to do inference of IndexNet Matting/Deep Matting on the Adobe Image Matting dataset:
+````
+python eval.py --checkpoint PATH_TO_MODEL --save_path results/ --config config/eval.yaml --seed your_seed
+````
 
-    python scripts/demo_indexnet_matting.py
-    
-    python scripts/demo_deep_matting.py
-    
-Please note that:
-- `DATA_DIR` should be modified to your dataset directory;
-- Images used in Deep Matting has been downsampled by 1/2 to enable the GPU inference. To reproduce the full-resolution results, the inference can be executed on CPU, which takes about 2 days.
+3.To calculate the four metrics: MSE, SAD, Grad, and Conn, run the following command:
 
-Here is the results of IndexNet Matting and our reproduced results of Deep Matting on the Adobe Image Dataset:
-
-| Methods | Remark | #Param. | GFLOPs | SAD | MSE | Grad | Conn | Model |
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| Deep Matting | Paper | -- | -- | 54.6 | 0.017 | 36.7 | 55.3 | -- |
-| Deep Matting | Re-implementation | 130.55M | 32.34 | 55.8 | 0.018 | 34.6 | 56.8 | [Google Drive (522MB)](https://drive.google.com/open?id=1Uws86AGkFqV2S7XkNuR8dz5SOttxh7AY) |
-| IndexNet Matting | Ours | 8.15M | 6.30 | 45.8 | 0.013 | 25.9 | 43.7 | Included |
-
-* The original paper reported that there were 491 images, but the released dataset only includes 431 images. Among missing images, 38 of them were said double counted, and the other 24 of them were not released. As a result, we at least use 4.87% fewer training data than the original paper. Thus, the small differerce in performance should be normal.
-* The evaluation code (Matlab code implemented by the Deep Image Matting's author) placed in the ``./evaluation_code`` folder is used to report the final performance for a fair comparion. We have also implemented a python version. The numerial difference is subtle.
+````
+python calculate.py --pred_folder ./results --gt_folder your/dataset/alpha/matte
+````
 
