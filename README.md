@@ -2,21 +2,18 @@
 An evaluation of In-Context Matting by HUST-TinySmart and an expansion of ICM-57 dataset
 
 <p align="center">
-  <img src="kid.png" width="350" title="Original Image"/>
-  <img src="matte.png" width="350" title="IndexNet Matting"/>
+<a href="https://arxiv.org/pdf/2403.15789.pdf"><img  src="demo/src/icon/arXiv-Paper.svg" ></a>
+<!-- <a href="https://link.springer.com/article/"><img  src="demo/src/icon/publication-Paper.svg" ></a> -->
+<a href="https://opensource.org/licenses/MIT"><img  src="demo/src/icon/license-MIT.svg"></a>
+
 </p>
 
-This repository includes the official implementation of IndexNet Matting for deep image matting, presented in our paper:
 
-**[Indices Matter: Learning to Index for Deep Image Matting](https://arxiv.org/abs/1908.00672)**
+<h4 align="center">This is an implementation of the IconMatting Model from the paper <a href="https://arxiv.org/abs/2403.15789">In-Context Matting</a>.</h4>
 
-Proc. IEEE/CVF International Conference on Computer Vision (ICCV), 2019
+<h4 align="center">Details of the model architecture can be found in <a href="https://tiny-smart.github.io/icm.github.io/">TinySmart homepage</a>.</h4>
 
-[Hao Lu](https://sites.google.com/site/poppinace/)<sup>1</sup>, Yutong Dai<sup>1</sup>, [Chunhua Shen](http://cs.adelaide.edu.au/~chhshen/)<sup>1</sup>, Songcen Xu<sup>2</sup>
 
-<sup>1</sup>The University of Adelaide, Australia
-
-<sup>2</sup>Noah's Ark Lab, Huawei Technologies
 
 ## Updates
 - 8 June 2020: The [journal version](https://arxiv.org/abs/1908.09895v2) of this work has been accepted to TPAMI! We further report many interesting results on other dense prediction tasks and extend our insights on generic upsampling operators.
