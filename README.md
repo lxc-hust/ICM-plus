@@ -16,8 +16,8 @@ An evaluation of In-Context Matting by HUST-TinySmart and an expansion of ICM-57
 
 
 ## Updates
-- 10 January 2025: Experiment instructions have been released!
-- 9 January 2025: The project description is now available. The code and experiment instructions will follow soon (slightly later than 10 January 2025).
+- **10 January 2025:** Experiment instructions have been released!
+- **9 January 2025:** The project description is now available. The code and experiment instructions will follow soon (slightly later than 10 January 2025).
 
 
 
@@ -34,13 +34,22 @@ We have included our environment configuration and third-party library dependenc
 
 ```bash
 conda env create -f env.yml
-    
-## Prepare Your Data
-1. Please contact Brian Price (bprice@adobe.com) requesting for the Adobe Image Matting dataset;
-2. Composite the dataset using provided foreground images, alpha mattes, and background images from the COCO and Pascal VOC datasets. I slightly modified the provided `compositon_code.py` to improve the efficiency, included in the `scripts` folder. Note that, since the image resolution is quite high, the dataset will be over 100 GB after composition.
-3. The final path structure used in my code looks like this:
+```
 
+## Prepare model checkpoints
+1. The IconMatting model checkpoints are open-source by <a href="https://pan.baidu.com/share/init?surl=HPbRRE5ZtPRpOSocm9qOmA&pwd=BA1c">HUST TinySmart.</a>.
+2. <a href="https://huggingface.co/stabilityai/stable-diffusion-2-1">Stable Diffusion v2-1.</a> is also required. To download it, run the following commands:
+```bash
+conda env create -f env.yml
+```
+huggingface-cli download --resume-download stabilityai/stable-diffusion-2-1 --local-dir your/local/dir
 ````
+````
+Make sure that the `your/local/dir` directory matches the path set in `config/eval.yaml`.
+
+
+
+## Prepare model checkpoints
 $PATH_TO_DATASET/Combined_Dataset
 ├──── Training_set
 │    ├──── alpha (431 images)
