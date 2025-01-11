@@ -16,6 +16,7 @@ An evaluation of In-Context Matting by HUST-TinySmart and an expansion of ICM-57
 
 
 ## Updates
+- **11 January 2025:** The whole project is now publicly available!
 - **10 January 2025:** Experiment instructions have been released!
 - **9 January 2025:** The project description is now available. The code and experiment instructions will follow soon (slightly later than 10 January 2025).
 
@@ -47,6 +48,7 @@ Make sure that the `your/local/dir` directory matches the path set in `config/ev
 
 ## Prepare test datasets
 1.<a href="https://pan.baidu.com/share/init?surl=ZJU_XHEVhIaVzGFPK_XCRg&pwd=BA1c">ICM-57</a> dataset is open-source by HUST-TinySmart.
+
 2.ICM-plus dataset has been submitted.
 It is recommended that your dataset be organized with the following structure:
 ````
@@ -67,6 +69,7 @@ python trimap_gen.py
 
 ## Evaluation
 1.Make sure to update the file reading path in `./icm/data/image_file.py` to point to your dataset directory. Additionally, ensure that the `dataset_name` field in `./config/eval.yaml` matches the name of your dataset.
+
 2.Run the following command to generate the predicted alpha matte:
 
 ````
